@@ -1,0 +1,141 @@
+@import "normalize";
+
+@import "variables";
+
+@import "small";
+
+//35em is also 560px (if basefont is 16px)
+@media only screen and (min-width: 35rem) {
+	@import "medium";
+}
+
+//64em is also 1028px (if basefont is 16px)
+@media only screen and (min-width: 64rem) {
+	@import "large";
+} 
+
+
+   // Variables
+$primary-color: #b96060;
+$secondary-color: #4c89bc;
+$text-color-light: #fff;
+$text-color-dark: #000;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive-font-size($size, $breakpoint-size) {
+  font-size: $size;
+
+  @media (max-width: 768px) {
+    font-size: $breakpoint-size;
+  }
+}
+
+// Header
+#headerWrapper {
+  background-color: $primary-color;
+  padding: 10px;
+
+  span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $text-color-light;
+  }
+}
+
+// Navigation
+#navWrapper {
+  background-color: $primary-color;
+  color: $text-color-light;
+  @include flex-center;
+  width: 100%;
+
+  nav {
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+
+      li {
+        margin: 0 15px;
+
+        a {
+          color: $text-color-light;
+          text-decoration: none;
+          font-size: 1.1rem;
+          padding: 10px 20px;
+          display: inline-block;
+          transition: background-color 0.3s ease;
+
+          &:hover,
+          &.active {
+            background-color: $secondary-color;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      ul {
+        flex-direction: column;
+
+        li {
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+}
+
+// Main Content
+#mainWrapper {
+  padding: 0px;
+  text-align: center;
+  background-color: $text-color-light;
+}
+
+// Details and Summary
+details {
+  background-color: $text-color-light;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: $box-shadow;
+
+  summary {
+    font-weight: bold;
+    cursor: pointer;
+    color: $text-color-dark;
+  }
+}
+
+// Footer
+#footerWrapper {
+  background-color: $primary-color;
+  color: $text-color-light;
+  padding: 20px 0;
+  text-align: center;
+
+  a {
+    color: $text-color-light;
+    text-decoration: none;
+    margin: 0 10px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive Headings
+h1 {
+  @include responsive-font-size(2.5rem, 2rem);
+}
